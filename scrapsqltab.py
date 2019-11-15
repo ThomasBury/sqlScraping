@@ -49,52 +49,6 @@ class ScrapSqlTab():
     schema : list
         List of the found schema, simple list not nested
 
-    Example
-    --------
-
-    drc = "C:/Users/xtbury/Documents/Projects/CVI/SAS_codes_CVI/"
-    sasTab = ScrapSqlTab(drc=drc).get_tables_from_sas_scripts()
-    sasTab.schema
-    Out[1]: ['dwhint', 'work', 'wrkcvi', 'applctrl']
-    sasTab.schema_tab
-    Out[2]:
-{'dwhint': ['ProdFam_NL',
-  'accountDetail',
-  'brokerlifeportfolio',
-  'ComEv_NL',
-  'clientContractDetail_EMP',
-  'ClientDetail',
-  'brokerresults',
-  'brokeractivitypremiums',
-  'brokeractivitynumbers',
-  'clientContractDetail',
-  'BrokerLifePortfolio',
-  'ClientDetail_EMP',
-  'ComEv_Broker_SP'],
- 'work': ['clientSearchFilter',
-  'ComEv_NL_Filtered',
-  'accountSorted3',
-  'accountsorted3',
-  'foundAccounts',
-  'filteredResults',
-  'AccountFiltered',
-  'accountsorted2',
-  'clientMeasuresLife',
-  'accountInfoFiltered',
-  'clientDetailFilter',
-  'client',
-  'clientDetailFilter3',
-  'brokers',
-  'accountsFound',
-  'Broker_ComEv_SP_fltr',
-  'brokerSP_tmp',
-  'Broker_ComEv_SP_fltr3',
-  'filteredResults3',
-  'accountFiltered',
-  'accountSelected'],
- 'wrkcvi': ['CVIFINAL'],
- 'applctrl': ['applications']}
-
     """
 
     def __init__(self, drc, extension='sas', start_flag='proc sql', end_flag='quit;'):
