@@ -2,7 +2,6 @@ import os
 import re
 import itertools
 import sql_metadata
-# drc = "C:/Users/xtbury/Documents/Projects/CVI/SAS_codes_CVI/"
 
 class ScrapSqlTab():
     """
