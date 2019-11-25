@@ -2,6 +2,7 @@ import os
 import re
 import itertools
 import sql_metadata
+import sqlparse
 
 class ScrapSqlTab():
     """
@@ -49,6 +50,7 @@ class ScrapSqlTab():
     schema : list
         List of the found schema, simple list not nested
 
+
     """
 
     def __init__(self, drc, extension='sas', start_flag='proc sql', end_flag='quit;'):
@@ -92,7 +94,8 @@ class ScrapSqlTab():
         #         get_next = False
         #     get_next = tok.lower() in ["from", "join"]
         result = sql_metadata.get_query_tables(re.sub(r'[;]', r' ', sql_str))
-        tab_dic = {'query': sql_str, 'tables': [x.split('.')[1] if (len(x.split('.')) > 1) else x for x in result]}
+        tab_dic = {'query': self.format_query(sql_str.replace('noprint;', '')),
+                   'tables': [x.split('.')[1] if (len(x.split('.')) > 1) else x for x in result]}
             #result}
         tab_list = result
         return tab_dic, tab_list
@@ -167,3 +170,11 @@ class ScrapSqlTab():
 
         return self
 
+    def format_query(self, sql_str):
+        """
+        format SQL query for a nice display/print
+        :param sql_str: string, the query
+        :return: formatted query, using the module sql parse
+        """
+        sql_str = sqlparse.format(sql_str, reindent=False, keyword_case='upper')
+        return sql_str
